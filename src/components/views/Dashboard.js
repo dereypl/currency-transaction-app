@@ -1,8 +1,8 @@
 import React from 'react';
-
 import styled from 'styled-components';
 import ExchangeRateContainer from "../containers/ExchangeRateContainer";
 import AddTransactionContainer from "../containers/AddTransactionContainer";
+import TransactionListContainer from "../containers/TransactionListContainer";
 
 const Wrapper = styled.div`
       display: flex;
@@ -16,7 +16,6 @@ const Header = styled.section`
       display: flex;
       width: 100%;
       height: 20rem;
-      //background-color: gray;
       justify-content: space-between;
       align-items: center;
       position:relative;
@@ -24,16 +23,16 @@ const Header = styled.section`
 `;
 
 
-
 const Dashboard = () => {
 
     return (
         <Wrapper>
             <Header>
-                Currency transaction app
+                [LOGOTYPE]
                 <ExchangeRateContainer/>
             </Header>
             <AddTransactionContainer/>
+            <TransactionListContainer/>
         </Wrapper>
     )
 };
