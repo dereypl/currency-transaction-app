@@ -1,10 +1,10 @@
 import React from "react";
 import {Heading} from "../headings/Heading";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 import TransactionListItem from "./TransactionListItem";
+import HighestAmountTransactionContainer from "./HighestAmountTransactionContainer";
 
-
-const TransactionsSection = styled.section`
+const Wrapper = styled.section`
       display: flex;
       width: 100%;
       height: auto;
@@ -18,14 +18,14 @@ const TransactionsList = styled.div`
       width: 70%;
       height: auto;
       min-height: 30rem;
-      padding-right: 1.5rem;
+      padding-right: 3rem;
 `;
 
 
-const TransactionListContainer = () => {
+const TransactionSection = () => {
 
     return (
-        <TransactionsSection>
+        <Wrapper>
             <TransactionsList>
                 <Heading>Transakcje</Heading>
                 <TransactionListItem/>
@@ -34,8 +34,9 @@ const TransactionListContainer = () => {
                 <TransactionListItem/>
                 <TransactionListItem/>
             </TransactionsList>
-        </TransactionsSection>
+            <HighestAmountTransactionContainer/>
+        </Wrapper>
     );
 };
 
-export default TransactionListContainer;
+export default TransactionSection;

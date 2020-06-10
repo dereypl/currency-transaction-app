@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ExchangeRateContainer from "../containers/ExchangeRateContainer";
 import AddTransactionContainer from "../containers/AddTransactionContainer";
-import TransactionListContainer from "../containers/TransactionListContainer";
+import TransactionsDetailsSection from "../containers/TransactionsDetailsSection";
 
 const Wrapper = styled.div`
       display: flex;
@@ -22,7 +22,6 @@ const Header = styled.section`
       padding: 5rem;
 `;
 
-
 const Dashboard = () => {
 
     return (
@@ -32,7 +31,7 @@ const Dashboard = () => {
                 <ExchangeRateContainer/>
             </Header>
             <AddTransactionContainer/>
-            <TransactionListContainer/>
+            <TransactionsDetailsSection/>
         </Wrapper>
     )
 };
