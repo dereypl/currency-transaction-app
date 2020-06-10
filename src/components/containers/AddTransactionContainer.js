@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
+import {Heading} from "../headings/Heading";
 
 const AddTransactionSection = styled.section`
       display: flex;
@@ -21,15 +22,6 @@ const InputWrapper = styled.div`
       height: 7rem;
 `;
 
-const Heading = styled.h1`
-      display: flex;
-      width: ${({width}) => width || '100%'};
-      color: white;
-      font-size: ${({theme}) => theme.fontSize.l};
-      font-weight: ${({theme}) => theme.fontWeight.semiBold};
-      margin: 0 0 1rem 0;
-      padding: 0;
-`;
 
 const CurrencyWrapper = styled.div`
       display: flex;
@@ -52,7 +44,7 @@ const AddTransactionContainer = () => {
     return (
         <AddTransactionSection>
             <InputWrapper width="60%">
-                <Heading>Nazwa transakcji</Heading>
+                <Heading color="white">Nazwa transakcji</Heading>
                 <Input
                     type="text"
                     name="transactionName"
@@ -60,7 +52,7 @@ const AddTransactionContainer = () => {
                 />
             </InputWrapper>
             <InputWrapper width="20%">
-                <Heading>Kwota</Heading>
+                <Heading color="white">Kwota</Heading>
                 <CurrencyWrapper>
                     <Input
                         currencyInput
