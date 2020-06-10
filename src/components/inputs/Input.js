@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 const Input = styled.input`
       display: flex;
@@ -18,6 +18,10 @@ const Input = styled.input`
       &:focus{
          outline: none;
       }
+      
+      ${({currencyInput}) => currencyInput && css`
+          padding-right: 4rem;
+     `}
 `;
 
 export default Input;
