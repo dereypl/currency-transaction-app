@@ -3,13 +3,7 @@ import CountUp from "react-countup";
 import React from "react";
 import styled, {css} from "styled-components";
 
-const TransactionsInsights = styled.div`
-      display: flex;
-      flex-direction: column;
-      width: 30%;
-      height: auto;
-      min-height: 30rem;
-`;
+
 
 const HighestAmountTransaction = styled.div`
       display: flex;
@@ -49,7 +43,7 @@ const ColumnWrapper = styled.div`
 `;
 
 const HighestAmountTransactionContainer = () => (
-    <TransactionsInsights>
+    <>
         <Heading>Transakcja o najwyższej kwocie</Heading>
         <HighestAmountTransaction>
             <Heading color={({theme}) => theme.colors.gray}>Nazwa</Heading>
@@ -69,7 +63,7 @@ const HighestAmountTransactionContainer = () => (
                 </ColumnWrapper>
             </RowWrapper>
         </HighestAmountTransaction>
-    </TransactionsInsights>
+    </>
 );
 
 export default HighestAmountTransactionContainer;
