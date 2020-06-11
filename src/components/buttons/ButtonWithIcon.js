@@ -47,8 +47,8 @@ const Button = styled.button`
       }
 `;
 
-const ButtonWithIcon = ({iconPath, iconPathActive}) => (
-    <Button pathActive={iconPathActive}>
+const ButtonWithIcon = ({iconPath, iconPathActive, ...restProps}) => (
+    <Button pathActive={iconPathActive} {...restProps}>
         <Icon path={iconPath}/>
     </Button>
 );

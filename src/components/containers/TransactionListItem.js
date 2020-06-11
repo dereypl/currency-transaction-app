@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ButtonWithIcon from "../buttons/ButtonWithIcon";
 import remove_icon from "../assets/images/remove-icon.svg"
 import remove_icon_active from "../assets/images/remove-icon-active.svg"
+import {useDispatch} from "react-redux";
+import * as transactionsService from '../../services/transactionsService'
 
 const Wrapper = styled.div`
       display: flex;
@@ -63,7 +65,12 @@ const CurrencyAmount = styled.div`
 
 const TransactionListItem = ({transaction}) => {
 
-    const {title, amount, currency} = transaction;
+    const {id,title, amount, currency} = transaction;
+    const dispatch = useDispatch();
+
+    const handleRemoveAction = () => {
+        dispatch(transactionsService.removeTransaction(id))
+    };
 
     return (
         <Wrapper>
@@ -72,7 +79,8 @@ const TransactionListItem = ({transaction}) => {
                 <span>Kwota:</span>{amount.toFixed(2)} {currency}
             </TransactionAmount>
             <CurrencyAmount>1234,23PLN
-                <ButtonWithIcon iconPath={remove_icon} iconPathActive={remove_icon_active}/>
+                <ButtonWithIcon onClick={handleRemoveAction}
+                    iconPath={remove_icon} iconPathActive={remove_icon_active}/>
             </CurrencyAmount>
         </Wrapper>
     );

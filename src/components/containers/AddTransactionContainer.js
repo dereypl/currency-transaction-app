@@ -7,7 +7,6 @@ import {useDispatch} from "react-redux";
 import * as transactionsService from '../../services/transactionsService'
 import {useForm} from "react-hook-form";
 import createNumberMask from "text-mask-addons/src/createNumberMask";
-import CurrencyInput from "../inputs/CurrencyInput";
 import MaskedInput from "react-text-mask";
 
 const AddTransactionForm = styled.form`

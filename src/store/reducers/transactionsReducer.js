@@ -1,7 +1,5 @@
 import initialState from '../initial_transactions_state.json'
-
-// --- ACTION TYPES ---
-export const TRANSACTIONS_LIST_ADD = 'TRANSACTIONS_LIST_ADD';
+import {TRANSACTIONS_LIST_ADD, TRANSACTIONS_LIST_REMOVE} from "../../services/transactionsService";
 
 // --- REDUCER ---
 const transactionsReducer = (state = initialState, {type, payload}) => {
@@ -10,6 +8,14 @@ const transactionsReducer = (state = initialState, {type, payload}) => {
             return {
                 ...state,
                 transactions: [payload, ...state.transactions]
+            };
+
+        case TRANSACTIONS_LIST_REMOVE:
+            const filteredTransactions = state.transactions.filter(transaction => transaction.id !== payload);
+
+            return {
+                ...state,
+                transactions: filteredTransactions
             };
         default:
             return state;
