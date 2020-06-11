@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import {Heading} from "../headings/Heading";
+import {useDispatch} from "react-redux";
+import * as transactionsService from '../../services/transactionsService'
 
 const AddTransactionSection = styled.section`
       display: flex;
@@ -41,13 +43,31 @@ export const CurrencyWrapper = styled.div`
 
 const AddTransactionContainer = () => {
 
+    const currency = 'EUR';
+    const dispatch = useDispatch();
+    const [title, setTitle] = useState('');
+    const [amount, setAmount] = useState(0);
+
+    const handleSaveTransaction = () => {
+        dispatch(transactionsService.saveTransaction({
+            id: 'xxx',
+            title,
+            currency,
+            amount,
+        }));
+        setTitle('');
+        setAmount(0);
+    };
+
     return (
         <AddTransactionSection>
             <InputWrapper width="60%">
                 <Heading color="white">Nazwa transakcji</Heading>
                 <Input
                     type="text"
-                    name="transactionName"
+                    name="title"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
                     placeholder="Wprowadź nazwę transakcji..."
                 />
             </InputWrapper>
@@ -59,10 +79,12 @@ const AddTransactionContainer = () => {
                         type="number"
                         name="value"
                         placeholder="Kwota"
+                        value={amount}
+                        onChange={e => setAmount(parseFloat(e.target.value))}
                     />
                 </CurrencyWrapper>
             </InputWrapper>
-            <Button disabled={false} width="20%" marginTop="2.8rem">Dodaj</Button>
+            <Button disabled={false} onClick={handleSaveTransaction} width="20%" marginTop="2.8rem">Dodaj</Button>
         </AddTransactionSection>
     );
 };
