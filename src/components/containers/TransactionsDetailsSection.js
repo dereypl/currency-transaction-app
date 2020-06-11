@@ -4,6 +4,7 @@ import styled from "styled-components";
 import TransactionListItem from "./TransactionListItem";
 import HighestAmountTransactionContainer from "./HighestAmountTransactionContainer";
 import CountUp from "react-countup";
+import {useSelector} from "react-redux";
 
 const Wrapper = styled.section`
       display: flex;
@@ -46,15 +47,13 @@ const Total = styled.div`
 
 const TransactionSection = () => {
 
+    const transactions = useSelector(state => state.transactions || []);
+
     return (
         <Wrapper>
             <TransactionsList>
                 <Heading>Transakcje</Heading>
-                <TransactionListItem/>
-                <TransactionListItem/>
-                <TransactionListItem/>
-                <TransactionListItem/>
-                <TransactionListItem/>
+                {transactions.map(transaction => <TransactionListItem key={transaction.id} transaction={transaction}/>)}
             </TransactionsList>
             <TransactionsInsights>
                 <HighestAmountTransactionContainer/>

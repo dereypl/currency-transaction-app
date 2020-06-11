@@ -32,7 +32,7 @@ const TransactionAmount = styled.div`
       align-items: center;
       font-size: ${({theme}) => theme.fontSize.l};
       font-weight: ${({theme}) => theme.fontWeight.semiBold};
-            color: ${({theme}) => theme.colors.dark_blue};
+      color: ${({theme}) => theme.colors.dark_blue};
 
       span{
          font-weight: ${({theme}) => theme.fontWeight.regular};
@@ -61,12 +61,16 @@ const CurrencyAmount = styled.div`
       }
 `;
 
-const TransactionListItem = () => {
+const TransactionListItem = ({transaction}) => {
+
+    const {title, amount, currency} = transaction;
 
     return (
         <Wrapper>
-            <TransactionName>Nazwa transakcji 1</TransactionName>
-            <TransactionAmount><span>Kwota:</span>120EUR</TransactionAmount>
+            <TransactionName>{title}</TransactionName>
+            <TransactionAmount>
+                <span>Kwota:</span>{amount.toFixed(2)} {currency}
+            </TransactionAmount>
             <CurrencyAmount>1234,23PLN
                 <ButtonWithIcon iconPath={remove_icon} iconPathActive={remove_icon_active}/>
             </CurrencyAmount>
