@@ -65,22 +65,20 @@ const CurrencyAmount = styled.div`
 
 const TransactionListItem = ({transaction}) => {
 
-    const {id,title, amount, currency} = transaction;
+    const {id,title, amount, currency_from, currency_to,convertedAmount} = transaction;
     const dispatch = useDispatch();
 
     const handleRemoveAction = () => {
         dispatch(removeTransaction(id))
     };
 
-    // const memoizedAmount = useMemo(() => computeExpensiveValue(a, b), [a, b]);
-
     return (
         <Wrapper>
             <TransactionName>{title}</TransactionName>
             <TransactionAmount>
-                <span>Kwota:</span>{amount.toFixed(2)} {currency}
+                <span>Kwota:</span>{amount.toFixed(2)} {currency_from}
             </TransactionAmount>
-            <CurrencyAmount>1234,23PLN
+            <CurrencyAmount>{convertedAmount} {currency_to}
                 <ButtonWithIcon onClick={handleRemoveAction}
                     iconPath={remove_icon} iconPathActive={remove_icon_active}/>
             </CurrencyAmount>

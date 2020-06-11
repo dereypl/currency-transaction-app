@@ -3,8 +3,8 @@ import {createSlice} from "@reduxjs/toolkit";
 const currencySlice = createSlice({
     name: 'currency',
     initialState: {
-        currency_from: 'EUR',
-        currency_to: 'PLN',
+        from: 'EUR',
+        to: 'PLN',
         rate: 4.4544
     },
     reducers: {

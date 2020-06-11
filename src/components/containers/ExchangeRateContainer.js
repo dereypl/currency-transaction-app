@@ -7,6 +7,7 @@ import Button from "../buttons/Button";
 import {CurrencyWrapper} from "./AddTransactionContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrencyRate} from "../../store/currency";
+import {getCurrency} from "../../store/transactions";
 
 const Container = styled.div`
       display: flex;
@@ -71,7 +72,7 @@ const ExchangeRateContainer = () => {
     const refInput = useRef();
     const dispatch = useDispatch();
     const [rollDown, setRollDown] = useState(false);
-    const currency = useSelector(state => state.currency);
+    const currency = useSelector(getCurrency);
 
     const toggleRollDown = () => setRollDown(!rollDown);
 
@@ -81,12 +82,11 @@ const ExchangeRateContainer = () => {
         setRollDown(false);
     };
 
-
     return (
         <Container rollDown={rollDown}>
             {rollDown ?
                 <>
-                    <span>1 {currency.currency_from} =</span>
+                    <span>1 {currency.from} =</span>
                     <RateWrapper>
                         <StyledCurrencyWrapper>
                             <Input type="number" ref={refInput} defaultValue={currency.rate}/>
@@ -100,7 +100,7 @@ const ExchangeRateContainer = () => {
                 :
                 <>
                     <RateWrapper>
-                        Przelicznik <span>1 {currency.currency_from} = {currency.rate} {currency.currency_to}</span>
+                        Przelicznik <span>1 {currency.from} = {currency.rate} {currency.to}</span>
                     </RateWrapper>
                     <IconWrapper onClick={toggleRollDown}>
                         <ArrowDownIcon/>

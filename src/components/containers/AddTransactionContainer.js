@@ -3,11 +3,11 @@ import styled from "styled-components";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import {Heading} from "../headings/Heading";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
 import createNumberMask from "text-mask-addons/src/createNumberMask";
 import MaskedInput from "react-text-mask";
-import {addTransaction} from "../../store/transactions";
+import {addTransaction, getCurrency} from "../../store/transactions";
 
 const AddTransactionForm = styled.form`
       display: flex;
@@ -69,8 +69,8 @@ const InputValidationError = inputError => (
 
 const AddTransactionContainer = () => {
 
-    const currency = 'EUR';
     const dispatch = useDispatch();
+    const currency = useSelector(getCurrency);
     const {handleSubmit, register, errors} = useForm();
 
 
@@ -78,8 +78,8 @@ const AddTransactionContainer = () => {
         console.log(values);
         dispatch(addTransaction({
             title: values.title,
-            currency,
-            amount: values.amount || 0,
+            amount: values.amount || 222,
+            currency
         }));
     };
 

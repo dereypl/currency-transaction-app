@@ -2,32 +2,37 @@
   "items": [
     {
       "id": 1005,
+      "currency_from": "EUR",
+      "currency_to": "PLN",
       "title": "Transakcja walutowa 5",
-      "currency": "EUR",
       "amount": 322.44
     },
     {
       "id": 1004,
+      "currency_from": "EUR",
+      "currency_to": "PLN",
       "title": "Transakcja walutowa 4",
-      "currency": "EUR",
       "amount": 23.24
     },
     {
       "id": 1003,
+      "currency_from": "EUR",
+      "currency_to": "PLN",
       "title": "Transakcja walutowa 3",
-      "currency": "EUR",
       "amount": 3121.35
     },
     {
       "id": 1002,
+      "currency_from": "EUR",
+      "currency_to": "PLN",
       "title": "Transakcja walutowa 2",
-      "currency": "EUR",
       "amount": 562.24
     },
     {
       "id": 1001,
+      "currency_from": "EUR",
+      "currency_to": "PLN",
       "title": "Transakcja walutowa 1",
-      "currency": "EUR",
       "amount": 111.00
     }
   ]
