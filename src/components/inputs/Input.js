@@ -22,6 +22,10 @@ const Input = styled.input`
       ${({currencyInput}) => currencyInput && css`
           padding-right: 4rem;
      `}
+
+      ${({hasError}) => hasError && css`
+          border: 0.1rem solid ${({theme}) => theme.colors.error};
+     `}
 `;
 
 export default Input;
