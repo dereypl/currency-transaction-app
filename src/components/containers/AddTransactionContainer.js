@@ -78,7 +78,7 @@ const AddTransactionContainer = () => {
         console.log(values);
         dispatch(addTransaction({
             title: values.title,
-            amount: values.amount || 222,
+            amount: values.amount || 999999,
             currency
         }));
     };

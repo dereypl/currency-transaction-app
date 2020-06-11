@@ -2,7 +2,8 @@ import {Heading} from "../headings/Heading";
 import CountUp from "react-countup";
 import React from "react";
 import styled, {css} from "styled-components";
-
+import {useSelector} from "react-redux";
+import {getHighestAmountTransaction} from "../../store/transactions";
 
 
 const HighestAmountTransaction = styled.div`
@@ -42,28 +43,37 @@ const ColumnWrapper = styled.div`
       margin-right: 3rem;
 `;
 
-const HighestAmountTransactionContainer = () => (
-    <>
-        <Heading>Transakcja o najwyższej kwocie</Heading>
-        <HighestAmountTransaction>
-            <Heading color="#B2B2B2">Nazwa</Heading>
-            <DetailsHeading>Nazwa transakcji 1</DetailsHeading>
-            <RowWrapper>
-                <ColumnWrapper>
-                    <Heading color="#B2B2B2">Kwota</Heading>
-                    <DetailsHeading currency>
-                        EUR<CountUp end={345.20} decimal="," decimals={2}/>
-                    </DetailsHeading>
-                </ColumnWrapper>
-                <ColumnWrapper>
-                    <Heading color="#B2B2B2">Po przewalutowaniu</Heading>
-                    <DetailsHeading currency>
-                        PLN<CountUp end={1246.56} decimal="," decimals={2}/>
-                    </DetailsHeading>
-                </ColumnWrapper>
-            </RowWrapper>
-        </HighestAmountTransaction>
-    </>
-);
+const HighestAmountTransactionContainer = () => {
+
+    let highestAmountTransaction = useSelector(getHighestAmountTransaction);
+    const {title, amount, currency_from, currency_to, convertedAmount} = highestAmountTransaction;
+
+    return (
+        <>
+            <Heading>Transakcja o najwyższej kwocie</Heading>
+            <HighestAmountTransaction>
+                <Heading color="#B2B2B2">Nazwa</Heading>
+                <DetailsHeading>{title}</DetailsHeading>
+                <RowWrapper>
+                    <ColumnWrapper>
+                        <Heading color="#B2B2B2">Kwota</Heading>
+                        <DetailsHeading currency>
+                            {currency_from}
+                            <CountUp end={amount} decimal="," decimals={2}/>
+                        </DetailsHeading>
+                    </ColumnWrapper>
+                    <ColumnWrapper>
+                        <Heading color="#B2B2B2">Po przewalutowaniu</Heading>
+                        <DetailsHeading currency>
+                            {currency_to}
+                            <CountUp end={parseFloat(convertedAmount)} decimal="," decimals={2}/>
+                        </DetailsHeading>
+                    </ColumnWrapper>
+                </RowWrapper>
+            </HighestAmountTransaction>
+        </>
+    )
+};
+
 
 export default HighestAmountTransactionContainer;
