@@ -5,6 +5,8 @@ import {ArrowUpIcon} from "../icons/ArrowUpIcon";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import {CurrencyWrapper} from "./AddTransactionContainer";
+import {useDispatch, useSelector} from "react-redux";
+import {setCurrencyRate} from "../../store/currency";
 
 const Container = styled.div`
       display: flex;
@@ -66,14 +68,16 @@ const StyledCurrencyWrapper = styled(CurrencyWrapper)`
 
 const ExchangeRateContainer = () => {
 
-    const [rollDown, setRollDown] = useState(false);
-    const [rate, setRate] = useState(4.4544);
     const refInput = useRef();
+    const dispatch = useDispatch();
+    const [rollDown, setRollDown] = useState(false);
+    const currency = useSelector(state => state.currency);
 
     const toggleRollDown = () => setRollDown(!rollDown);
 
     const handleSave = () => {
-        setRate(refInput.current.value);
+        const value = parseFloat(refInput.current.value);
+        dispatch(setCurrencyRate(value));
         setRollDown(false);
     };
 
@@ -82,10 +86,10 @@ const ExchangeRateContainer = () => {
         <Container rollDown={rollDown}>
             {rollDown ?
                 <>
-                    <span>1 EUR =</span>
+                    <span>1 {currency.currency_from} =</span>
                     <RateWrapper>
                         <StyledCurrencyWrapper>
-                            <Input type="number" ref={refInput} defaultValue={rate}/>
+                            <Input type="number" ref={refInput} defaultValue={currency.rate}/>
                         </StyledCurrencyWrapper>
                         <Button width="9rem" onClick={handleSave}>Zapisz</Button>
                     </RateWrapper>
@@ -96,7 +100,7 @@ const ExchangeRateContainer = () => {
                 :
                 <>
                     <RateWrapper>
-                        Przelicznik <span>1 EUR = {rate} PLN</span>
+                        Przelicznik <span>1 {currency.currency_from} = {currency.rate} {currency.currency_to}</span>
                     </RateWrapper>
                     <IconWrapper onClick={toggleRollDown}>
                         <ArrowDownIcon/>
