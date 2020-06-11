@@ -46,17 +46,17 @@ const HighestAmountTransactionContainer = () => (
     <>
         <Heading>Transakcja o najwyższej kwocie</Heading>
         <HighestAmountTransaction>
-            <Heading color={({theme}) => theme.colors.gray}>Nazwa</Heading>
+            <Heading color="#B2B2B2">Nazwa</Heading>
             <DetailsHeading>Nazwa transakcji 1</DetailsHeading>
             <RowWrapper>
                 <ColumnWrapper>
-                    <Heading color={({theme}) => theme.colors.gray}>Kwota</Heading>
+                    <Heading color="#B2B2B2">Kwota</Heading>
                     <DetailsHeading currency>
                         EUR<CountUp end={345.20} decimal="," decimals={2}/>
                     </DetailsHeading>
                 </ColumnWrapper>
                 <ColumnWrapper>
-                    <Heading color={({theme}) => theme.colors.gray}>Po przewalutowaniu</Heading>
+                    <Heading color="#B2B2B2">Po przewalutowaniu</Heading>
                     <DetailsHeading currency>
                         PLN<CountUp end={1246.56} decimal="," decimals={2}/>
                     </DetailsHeading>
