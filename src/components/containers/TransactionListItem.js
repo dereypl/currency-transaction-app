@@ -4,7 +4,7 @@ import ButtonWithIcon from "../buttons/ButtonWithIcon";
 import remove_icon from "../assets/images/remove-icon.svg"
 import remove_icon_active from "../assets/images/remove-icon-active.svg"
 import {useDispatch} from "react-redux";
-import * as transactionsService from '../../services/transactionsService'
+import {removeTransaction} from "../../store/transactions";
 
 const Wrapper = styled.div`
       display: flex;
@@ -69,8 +69,10 @@ const TransactionListItem = ({transaction}) => {
     const dispatch = useDispatch();
 
     const handleRemoveAction = () => {
-        dispatch(transactionsService.removeTransaction(id))
+        dispatch(removeTransaction(id))
     };
+
+    // const memoizedAmount = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
     return (
         <Wrapper>

@@ -4,10 +4,10 @@ import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import {Heading} from "../headings/Heading";
 import {useDispatch} from "react-redux";
-import * as transactionsService from '../../services/transactionsService'
 import {useForm} from "react-hook-form";
 import createNumberMask from "text-mask-addons/src/createNumberMask";
 import MaskedInput from "react-text-mask";
+import {addTransaction} from "../../store/transactions";
 
 const AddTransactionForm = styled.form`
       display: flex;
@@ -76,8 +76,7 @@ const AddTransactionContainer = () => {
 
     const onSubmit = values => {
         console.log(values);
-        dispatch(transactionsService.saveTransaction({
-            id: 'xxx',
+        dispatch(addTransaction({
             title: values.title,
             currency,
             amount: values.amount || 0,
@@ -96,7 +95,6 @@ const AddTransactionContainer = () => {
     };
 
     const currencyMask = createNumberMask(defaultMaskOptions);
-
 
 
     return (

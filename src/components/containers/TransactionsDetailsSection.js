@@ -53,7 +53,7 @@ const TransactionSection = () => {
         <Wrapper>
             <TransactionsList>
                 <Heading>Transakcje</Heading>
-                {transactions.map(transaction => <TransactionListItem key={transaction.id} transaction={transaction}/>)}
+                {transactions.list.map(transaction => <TransactionListItem key={transaction.id} transaction={transaction}/>)}
             </TransactionsList>
             <TransactionsInsights>
                 <HighestAmountTransactionContainer/>

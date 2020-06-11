@@ -1,18 +1,10 @@
-import transactionsReducer from "./reducers/transactionsReducer";
-import {applyMiddleware, compose, createStore} from "redux";
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit'
+import transactions from '../store/transactions'
 
-/*
-    W 'prawdziwej' aplikacji powinniśmy dodatkowo użyć redux-persist,
-     aby globalny stan nie ulegał wyczyszczeniu w momencie odświeżania strony.
-     Dodatkowo REDUX_DEVTOOLS_EXTENSION - powinno zostać usunięde w środowisku produkcyjnym.
+const store = configureStore({
+    reducer: {
+        transactions
+    }
+});
 
- */
-
-export default () => createStore(
-    transactionsReducer,
-    compose(
-        applyMiddleware(thunk),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-);
+export default store
