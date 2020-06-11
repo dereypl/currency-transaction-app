@@ -23,7 +23,7 @@ const InputWrapper = styled.div`
 `;
 
 
-const CurrencyWrapper = styled.div`
+export const CurrencyWrapper = styled.div`
       display: flex;
       margin: 0;
       padding: 0;
