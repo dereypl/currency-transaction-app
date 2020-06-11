@@ -4,7 +4,7 @@ import styled from "styled-components";
 import TransactionListItem from "./TransactionListItem";
 import HighestAmountTransactionContainer from "./HighestAmountTransactionContainer";
 import CountUp from "react-countup";
-import {getTransactionsList} from "../../store/transactions";
+import {getTransactionsList, getTransactionsTotalAmount} from "../../store/transactions";
 import {useSelector} from "react-redux";
 
 const Wrapper = styled.section`
@@ -49,6 +49,8 @@ const Total = styled.div`
 const TransactionSection = () => {
 
     const transactions = useSelector(getTransactionsList);
+    const totalCount = useSelector(getTransactionsTotalAmount);
+    console.log(totalCount);
 
     return (
         <Wrapper>
@@ -60,7 +62,7 @@ const TransactionSection = () => {
                 <HighestAmountTransactionContainer/>
                 <TransactionsTotalAmount>
                     <Heading>Suma wszystkich transakcji</Heading>
-                    <Total><CountUp end={34355.56} decimal="," decimals={2}/> PLN</Total>
+                    <Total><CountUp end={parseFloat(totalCount)} decimal="," decimals={2}/> PLN</Total>
                 </TransactionsTotalAmount>
             </TransactionsInsights>
         </Wrapper>
