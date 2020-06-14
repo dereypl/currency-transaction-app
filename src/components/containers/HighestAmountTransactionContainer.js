@@ -4,16 +4,25 @@ import React from "react";
 import styled, {css} from "styled-components";
 import {useSelector} from "react-redux";
 import {getHighestAmountTransaction} from "../../store/transactions";
+import device from "../../utils/ui-config/mobileQueries";
 
 
 const HighestAmountTransaction = styled.div`
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: 20rem;
+      height: 30rem;
       border-radius: 1rem;
       background-color: ${({theme}) => theme.colors.dark_blue};
       padding: 2rem 3rem;
+      
+      @media ${device.mobileXL} { 
+          height: 20rem;
+      }
+      
+      @media ${device.laptopL} { 
+          height: 27rem;
+      }
 `;
 
 const DetailsHeading = styled(Heading)`
@@ -30,18 +39,27 @@ const DetailsHeading = styled(Heading)`
           font-weight: ${({theme}) => theme.fontWeight.bold};
           font-size: ${({theme}) => theme.fontSize.xxl};
           flex-direction: column;
-          width: 16rem;
       `}
 `;
 
 const RowWrapper = styled.div`
       display:flex;
+      flex-direction: column;
       width: 100%;
       justify-content: space-between;
+      
+      @media ${device.mobileXL} { 
+         flex-direction: row;
+      }
+      
+      @media ${device.laptopL} { 
+         flex-direction: column;
+      }
 `;
 const ColumnWrapper = styled.div`
       display:flex;
       flex-direction: column;
+      margin-bottom: 1rem;
 `;
 
 const HighestAmountTransactionContainer = () => {
