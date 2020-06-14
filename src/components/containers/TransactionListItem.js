@@ -4,7 +4,7 @@ import ButtonWithIcon from "../buttons/ButtonWithIcon";
 import remove_icon from "../assets/images/remove-icon.svg"
 import remove_icon_active from "../assets/images/remove-icon-active.svg"
 import {useDispatch} from "react-redux";
-import {removeTransaction} from "../../store/transactions";
+import {getFixedAmount, removeTransaction} from "../../store/transactions";
 import device from "../../utils/ui-config/mobileQueries";
 
 const Wrapper = styled.div`
@@ -97,9 +97,9 @@ const TransactionListItem = ({transaction}) => {
             <TransactionName>{title}</TransactionName>
             <TransactionAmount>
                 <span>Kwota:</span>
-                {amount} {currency_from}
+                {getFixedAmount(amount)} {currency_from}
             </TransactionAmount>
-            <CurrencyAmount>{convertedAmount} {currency_to}
+            <CurrencyAmount>{getFixedAmount(convertedAmount)} {currency_to}
                 <ButtonWithIcon onClick={handleRemoveAction}
                     iconPath={remove_icon} iconPathActive={remove_icon_active}/>
             </CurrencyAmount>

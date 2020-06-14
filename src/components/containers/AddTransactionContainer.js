@@ -5,7 +5,7 @@ import Button from "../buttons/Button";
 import {Heading} from "../headings/Heading";
 import {useDispatch, useSelector} from "react-redux";
 import {Controller, useForm} from "react-hook-form";
-import {addTransaction, getCurrency} from "../../store/transactions";
+import {addTransaction, getFixedAmount, getCurrency} from "../../store/transactions";
 import CurrencyInput from "../inputs/CurrencyInput";
 import device from "../../utils/ui-config/mobileQueries";
 
@@ -90,7 +90,7 @@ const AddTransactionContainer = () => {
     const onSubmit = ({title, amount}) => {
 
         // --- PARSE AMOUNT TO NUMBER WITH *.00 PRECISION ---
-        amount = Number(parseFloat(amount).toFixed(2));
+        amount = Number(getFixedAmount(amount));
 
         // --- DISPATCH REDUX ACTION TO ADD TRANSACTION TO THE LIST ---
         dispatch(addTransaction({

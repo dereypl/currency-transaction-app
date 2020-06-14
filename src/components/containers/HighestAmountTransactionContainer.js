@@ -3,7 +3,7 @@ import CountUp from "react-countup";
 import React from "react";
 import styled, {css} from "styled-components";
 import {useSelector} from "react-redux";
-import {getHighestAmountTransaction} from "../../store/transactions";
+import {getFixedAmount, getHighestAmountTransaction} from "../../store/transactions";
 import device from "../../utils/ui-config/mobileQueries";
 
 
@@ -80,7 +80,7 @@ const HighestAmountTransactionContainer = () => {
                             {currency_from}
                             <CountUp
                                 duration={1.5}
-                                end={parseFloat(amount)}
+                                end={getFixedAmount(amount)}
                                 decimal=","
                                 decimals={2}/>
                         </DetailsHeading>
@@ -91,7 +91,7 @@ const HighestAmountTransactionContainer = () => {
                             {currency_to}
                             <CountUp
                                 duration={1.5}
-                                end={parseFloat(convertedAmount)}
+                                end={getFixedAmount(convertedAmount)}
                                 decimal=","
                                 decimals={2}
                             />

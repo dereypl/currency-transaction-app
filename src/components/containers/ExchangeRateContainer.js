@@ -7,7 +7,7 @@ import Button from "../buttons/Button";
 import {CurrencyWrapper} from "./AddTransactionContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrencyRate} from "../../store/currency";
-import {getCurrency} from "../../store/transactions";
+import {getCurrency, getFixedAmount} from "../../store/transactions";
 import device from "../../utils/ui-config/mobileQueries";
 
 const Container = styled.div`
@@ -110,7 +110,7 @@ const ExchangeRateContainer = () => {
     const toggleRollDown = () => setRollDown(!rollDown);
 
     const handleSave = () => {
-        const value = parseFloat(refInput.current.value);
+        const value = getFixedAmount(refInput.current.value, 4);
         dispatch(setCurrencyRate(value));
         setRollDown(false);
     };

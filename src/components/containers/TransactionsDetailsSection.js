@@ -4,7 +4,11 @@ import styled from "styled-components";
 import TransactionListItem from "./TransactionListItem";
 import HighestAmountTransactionContainer from "./HighestAmountTransactionContainer";
 import CountUp from "react-countup";
-import {getConvertedTransactionsList, getTransactionsTotalAmount} from "../../store/transactions";
+import {
+    getFixedAmount,
+    getConvertedTransactionsList,
+    getTransactionsTotalAmount
+} from "../../store/transactions";
 import {useSelector} from "react-redux";
 import device from "../../utils/ui-config/mobileQueries";
 
@@ -97,7 +101,7 @@ const TransactionSection = () => {
                         <Heading>Suma wszystkich transakcji</Heading>
                         <Total><CountUp
                             duration={1.5}
-                            end={parseFloat(totalCount)}
+                            end={getFixedAmount(totalCount)}
                             decimal=","
                             decimals={2}
                         /> EUR</Total>

@@ -11,7 +11,7 @@ const transactionsSlice = createSlice({
         addTransaction(state, {payload}) {
 
             const transaction = {
-                id: state.list[0]? state.list[0].id + 1 : 1001, // if there is no transactions set id to 1001
+                id: state.list[0] ? state.list[0].id + 1 : 1001, // if there is no transactions set id to 1001
                 currency_from: payload.currency.from,
                 currency_to: payload.currency.to,
                 ...payload
@@ -26,7 +26,8 @@ const transactionsSlice = createSlice({
 });
 
 // --- HELPERS ---
-const getConvertedAmount = (amount, rate) => (amount * rate).toFixed(2);
+export const getFixedAmount = (amount, precision = 2) => parseFloat(amount).toFixed(precision);
+const getConvertedAmount = (amount, rate) => getFixedAmount(amount * rate);
 
 const getConvertedTransaction = (transaction, rate) => ({
     ...transaction,
