@@ -21,11 +21,16 @@ const Wrapper = styled.div`
 const Header = styled.section`
       display: flex;
       width: 100%;
-      height: 20rem;
-      min-height: 20rem;
+      height: auto;
+      min-height: 30rem;
       justify-content: space-between;
       align-items: center;
       position:relative;
+      
+      @media ${device.mobileXL} { 
+          height: auto;
+          min-height: 20rem;
+      } 
 `;
 
 const Dashboard = () => {

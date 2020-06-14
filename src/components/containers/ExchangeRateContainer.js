@@ -12,8 +12,9 @@ import device from "../../utils/ui-config/mobileQueries";
 
 const Container = styled.div`
       display: flex;
+      flex-direction: column;
       width: 100%;
-      height: 6rem;
+      height: 10rem;
       background-color: white;
       position: absolute;
       top: 0;
@@ -23,7 +24,7 @@ const Container = styled.div`
       box-shadow: 0 1rem 1.5rem 0 rgba(0, 0, 0, 0.02), 0 0.6rem 1.2rem 0 rgba(0, 0, 0, 0.05);
       font-size: ${({theme}) => theme.fontSize.m};
       color: ${({theme}) => theme.colors.dark_blue};
-      padding: 0 3rem;
+      padding: 2rem 3rem 0 3rem;
 
       span{
          font-weight: ${({theme}) => theme.fontWeight.semiBold};
@@ -32,8 +33,18 @@ const Container = styled.div`
       }
       
       ${({rollDown}) => rollDown === true && css`
-          height: 12rem;
+          height: 18rem;
       `}
+      
+      @media ${device.mobileXL} { 
+          flex-direction: row;
+          height: 6rem;
+          padding: 0 3rem;
+          
+          ${({rollDown}) => rollDown === true && css`=
+          height: 12rem;
+          `}
+      };
       
       
       @media ${device.laptop} { 
@@ -41,16 +52,21 @@ const Container = styled.div`
           height: 5rem;
           width: 40rem;
           padding: 2rem;
-      }
+      };
 `;
 
 
 const RateWrapper = styled.div`
       display:flex;
+      flex-direction: column;
       width: 80%;
       height: 100%;
       justify-content: center;
       align-items: center;
+      
+      @media ${device.mobileXL} { 
+          flex-direction: row;
+      };
 `;
 
 const IconWrapper = styled.div`
@@ -63,9 +79,10 @@ const IconWrapper = styled.div`
 `;
 
 const StyledCurrencyWrapper = styled(CurrencyWrapper)`
-      width: 60%;
+      width: 100%;
       position: relative;
-      margin-right: 1.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
       
       ::after{
            content: 'PLN';
@@ -73,6 +90,14 @@ const StyledCurrencyWrapper = styled(CurrencyWrapper)`
            right: 0.8rem;
            top: 1.3rem;
       }
+      
+      
+       @media ${device.mobileXL} { 
+          width: 60%;
+          margin-right: 1.5rem;
+          margin-top: 0;
+          margin-bottom: 0;
+       };
 `;
 
 const ExchangeRateContainer = () => {
