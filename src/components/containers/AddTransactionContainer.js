@@ -13,17 +13,17 @@ const AddTransactionForm = styled.form`
       display: flex;
       flex-direction: column;
       width: 100%;
-      height: 35rem;
+      height: 30rem;
       background-color: ${({theme}) => theme.colors.dark_blue};
       position:relative;
       padding: 3rem;
       border-radius: 2rem;
+      align-items: center;
       
       @media ${device.laptop} { 
          flex-direction: row;
          height: 18rem;
-         padding: 5rem;
-      }
+      };
 `;
 
 const InputWrapper = styled.div`
@@ -132,7 +132,7 @@ const AddTransactionContainer = () => {
                 </CurrencyWrapper>
                 <InputValidationError value={errors.amount}/>
             </InputWrapper>
-            <Button disabled={hasFormErrors(errors)} width="20%" marginTop="2.8rem">Dodaj</Button>
+            <Button disabled={hasFormErrors(errors)} width="20%" marginTop="2.6rem">Dodaj</Button>
         </AddTransactionForm>
     );
 };

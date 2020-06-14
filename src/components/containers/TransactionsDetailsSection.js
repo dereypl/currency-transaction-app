@@ -13,7 +13,7 @@ const Wrapper = styled.section`
       flex-direction: column;
       width: 100%;
       height: auto;
-      margin-top: 6rem;
+      margin-top: 5rem;
       padding-bottom: 4rem;
       
       @media ${device.laptopL} { 
@@ -48,6 +48,7 @@ const TransactionsInsights = styled.div`
       @media ${device.laptopL} { 
          order: 2;
          width: 30%;
+         justify-content: flex-start;
       }
 `;
 

@@ -10,7 +10,8 @@ const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
       width: 85vw;
-      height: 100vh;
+      height: auto;
+      min-height: 100vh;
       margin: 0 auto;
       
       @media ${device.laptop} { 
