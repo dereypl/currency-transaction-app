@@ -8,6 +8,7 @@ import {removeTransaction} from "../../store/transactions";
 
 const Wrapper = styled.div`
       display: flex;
+      align-items: center;
       width: 100%;
       height: 6rem;
       border-radius: 1rem;
@@ -19,7 +20,7 @@ const Wrapper = styled.div`
 
 const TransactionName = styled.div` 
       display: flex;
-      width: 60%;
+      width: 56%;
       height: 100%;
       align-items: center;
       color: ${({theme}) => theme.colors.text_gray};
@@ -29,38 +30,38 @@ const TransactionName = styled.div`
 
 const TransactionAmount = styled.div` 
       display: flex;
+      justify-content: space-between;
+      margin-right: 1rem;
       width: 20%;
+      min-width: 15rem;
       height: 100%;
       align-items: center;
       font-size: ${({theme}) => theme.fontSize.l};
       font-weight: ${({theme}) => theme.fontWeight.semiBold};
       color: ${({theme}) => theme.colors.dark_blue};
+      padding-right: 1rem;
 
       span{
          font-weight: ${({theme}) => theme.fontWeight.regular};
          color: ${({theme}) => theme.colors.gray};
-         margin-right: 1rem;
       }
 `;
 
 
 const CurrencyAmount = styled.div` 
       display: flex;
-      width: 20%;
+      justify-content: flex-end;
+      padding-right: 7rem;
+      width: 24%;
+      min-width: 20rem;
       height: 100%;
       align-items: center;
       background-color: ${({theme}) => theme.colors.dark_blue};
       font-size: ${({theme}) => theme.fontSize.l};
       font-weight: ${({theme}) => theme.fontWeight.semiBold};
       border-radius: 0 1rem 1rem 0;
-      padding-left: 3rem;
       color: white;
       position:relative;
-      
-      span{
-         font-weight: ${({theme}) => theme.fontWeight.regular};
-         margin-right: 1rem;
-      }
 `;
 
 const TransactionListItem = ({transaction}) => {
@@ -76,7 +77,8 @@ const TransactionListItem = ({transaction}) => {
         <Wrapper>
             <TransactionName>{title}</TransactionName>
             <TransactionAmount>
-                <span>Kwota:</span>{amount.toFixed(2)} {currency_from}
+                <span>Kwota:</span>
+                {amount.toFixed(2)} {currency_from}
             </TransactionAmount>
             <CurrencyAmount>{convertedAmount} {currency_to}
                 <ButtonWithIcon onClick={handleRemoveAction}
