@@ -8,22 +8,22 @@ import {CurrencyWrapper} from "./AddTransactionContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrencyRate} from "../../store/currency";
 import {getCurrency} from "../../store/transactions";
+import device from "../../utils/ui-config/mobileQueries";
 
 const Container = styled.div`
       display: flex;
-      width: 40rem;
-      height: 5rem;
+      width: 100%;
+      height: 6rem;
       background-color: white;
       position: absolute;
       top: 0;
-      right: 0;
-      padding: 2rem;
       align-items: center;
       justify-content: center;
       border-radius: 0 0 1.5rem 1.5rem;
       box-shadow: 0 1rem 1.5rem 0 rgba(0, 0, 0, 0.02), 0 0.6rem 1.2rem 0 rgba(0, 0, 0, 0.05);
       font-size: ${({theme}) => theme.fontSize.m};
       color: ${({theme}) => theme.colors.dark_blue};
+      padding: 0 3rem;
 
       span{
          font-weight: ${({theme}) => theme.fontWeight.semiBold};
@@ -34,6 +34,14 @@ const Container = styled.div`
       ${({rollDown}) => rollDown === true && css`
           height: 12rem;
       `}
+      
+      
+      @media ${device.laptop} { 
+          right: 0;
+          height: 5rem;
+          width: 40rem;
+          padding: 2rem;
+      }
 `;
 
 

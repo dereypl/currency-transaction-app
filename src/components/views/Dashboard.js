@@ -22,10 +22,10 @@ const Header = styled.section`
       display: flex;
       width: 100%;
       height: 20rem;
+      min-height: 20rem;
       justify-content: space-between;
       align-items: center;
       position:relative;
-      padding: 5rem;
 `;
 
 const Dashboard = () => {
@@ -33,8 +33,8 @@ const Dashboard = () => {
     return (
         <Wrapper>
             <Header>
-                [LOGOTYPE]
                 <ExchangeRateContainer/>
+                [LOGOTYPE]
             </Header>
             <Heading>Dodaj transakcję</Heading>
             <AddTransactionContainer/>
