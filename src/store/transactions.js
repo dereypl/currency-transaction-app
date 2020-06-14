@@ -68,11 +68,9 @@ export const getHighestAmountTransaction = createSelector(
 );
 
 export const getTransactionsTotalAmount = createSelector(
-    [getTransactionsList, getCurrency],
-    (transactionsList, currency) => {
-        let total = transactionsList.reduce((prevT, currentT) => prevT + (currentT.amount || 0), 0);
-        return getConvertedAmount(total, currency.rate);
-    }
+    [getTransactionsList],
+    (transactionsList) =>
+        transactionsList.reduce((prevT, currentT) => prevT + (currentT.amount || 0), 0)
 );
 
 export const {addTransaction, removeTransaction} = transactionsSlice.actions;

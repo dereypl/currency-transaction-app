@@ -100,7 +100,7 @@ const TransactionSection = () => {
                             end={parseFloat(totalCount)}
                             decimal=","
                             decimals={2}
-                        /> PLN</Total>
+                        /> EUR</Total>
                     </TransactionsTotalAmount>
             </TransactionsInsights>
         </Wrapper>
