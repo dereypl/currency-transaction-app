@@ -16,6 +16,11 @@ const Wrapper = styled.section`
       margin-top: 5rem;
       padding-bottom: 4rem;
       
+      p{
+         color: ${({theme}) => theme.colors.gray};
+         margin-left: 2rem;
+      }
+      
       @media ${device.laptopL} { 
          flex-direction: row;
       }
@@ -73,15 +78,18 @@ const Total = styled.div`
 
 const TransactionSection = () => {
 
-    const transactions = useSelector(getConvertedTransactionsList);
+    const transactions = useSelector(getConvertedTransactionsList || []);
     const totalCount = useSelector(getTransactionsTotalAmount);
-    console.log(totalCount);
 
     return (
         <Wrapper>
             <TransactionsList>
                 <Heading>Transakcje</Heading>
-                {transactions.map(transaction => <TransactionListItem key={transaction.id} transaction={transaction}/>)}
+                {Boolean(transactions.length)?
+                    transactions.map(transaction => <TransactionListItem key={transaction.id} transaction={transaction}/>)
+                    :
+                    <p>Nie dodano żadnej transakcji.</p>
+                }
             </TransactionsList>
             <TransactionsInsights>
                     <HighestAmountTransactionContainer/>

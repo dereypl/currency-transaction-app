@@ -65,7 +65,7 @@ const ColumnWrapper = styled.div`
 const HighestAmountTransactionContainer = () => {
 
     let highestAmountTransaction = useSelector(getHighestAmountTransaction);
-    const {title, amount, currency_from, currency_to, convertedAmount} = highestAmountTransaction;
+    const {title, amount, currency_from, currency_to, convertedAmount} = highestAmountTransaction || {};
 
     return (
         <>
