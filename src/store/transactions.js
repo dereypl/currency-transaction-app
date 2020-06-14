@@ -26,7 +26,7 @@ const transactionsSlice = createSlice({
 });
 
 // --- HELPERS ---
-export const getFixedAmount = (amount, precision = 2) => Number(parseFloat(amount).toFixed(precision));
+export const getFixedAmount = (amount, precision = 2) => parseFloat(amount).toFixed(precision);
 const getConvertedAmount = (amount, rate) => getFixedAmount(amount * rate);
 
 const getConvertedTransaction = (transaction, rate) => ({

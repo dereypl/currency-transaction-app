@@ -89,7 +89,7 @@ const AddTransactionContainer = () => {
 
     const onSubmit = ({title, amount}) => {
 
-        // --- PARSE AMOUNT TO NUMBER WITH *.00 PRECISION ---
+        // --- PARSE AMOUNT TO NUMBER  ---
         amount = Number(getFixedAmount(amount));
 
         // --- DISPATCH REDUX ACTION TO ADD TRANSACTION TO THE LIST ---

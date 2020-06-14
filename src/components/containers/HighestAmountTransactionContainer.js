@@ -80,7 +80,7 @@ const HighestAmountTransactionContainer = () => {
                             {currency_from}
                             <CountUp
                                 duration={1.5}
-                                end={getFixedAmount(amount)}
+                                end={+getFixedAmount(amount)}
                                 decimal=","
                                 decimals={2}/>
                         </DetailsHeading>
@@ -91,7 +91,7 @@ const HighestAmountTransactionContainer = () => {
                             {currency_to}
                             <CountUp
                                 duration={1.5}
-                                end={getFixedAmount(convertedAmount)}
+                                end={+getFixedAmount(convertedAmount)}
                                 decimal=","
                                 decimals={2}
                             />

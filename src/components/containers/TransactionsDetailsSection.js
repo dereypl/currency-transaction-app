@@ -101,9 +101,10 @@ const TransactionSection = () => {
                         <Heading>Suma wszystkich transakcji</Heading>
                         <Total><CountUp
                             duration={1.5}
-                            end={getFixedAmount(totalCount)}
+                            end={+getFixedAmount(totalCount)}
                             decimal=","
                             decimals={2}
+                            preserveValue={true}
                         /> EUR</Total>
                     </TransactionsTotalAmount>
             </TransactionsInsights>
