@@ -78,7 +78,7 @@ const TransactionListItem = ({transaction}) => {
             <TransactionName>{title}</TransactionName>
             <TransactionAmount>
                 <span>Kwota:</span>
-                {amount.toFixed(2)} {currency_from}
+                {amount} {currency_from}
             </TransactionAmount>
             <CurrencyAmount>{convertedAmount} {currency_to}
                 <ButtonWithIcon onClick={handleRemoveAction}

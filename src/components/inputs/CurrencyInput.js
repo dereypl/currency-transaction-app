@@ -14,16 +14,16 @@ const StyledInput = styled(MaskedInput)`
       border: none;
       border-radius: 1rem;
       width: ${({width}) => width || '100%'};
+      padding: 1.5rem 4rem 1.5rem 3rem;
+             
       ::placeholder {
         color: ${({theme}) => theme.colors.text_gray};
       }
       &:focus{
          outline: none;
       }
-      
-       padding: 1.5rem 4rem 1.5rem 3rem;
 
-      ${({haserror}) => haserror && css`
+      ${({errored}) => errored === 'true' && css`
           border: 0.1rem solid ${({theme}) => theme.colors.error};
      `}
 `;
@@ -35,16 +35,16 @@ const defaultMaskOptions = {
     allowDecimal: true,
     decimalSymbol: '.',
     decimalLimit: 2,
+    integerLimit: 10,
     allowNegative: false,
     allowLeadingZeroes: false,
 };
 
 
-const CurrencyInput = React.forwardRef(({...inputProps}, ref) => {
+const CurrencyInput = inputProps => {
     const currencyMask = createNumberMask(defaultMaskOptions);
-
-    return <StyledInput ref={ref} name='amount' mask={currencyMask} {...inputProps} />
-});
+    return <StyledInput  mask={currencyMask} {...inputProps} />
+};
 
 
 export default CurrencyInput;

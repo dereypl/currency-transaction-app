@@ -1,13 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import {Heading} from "../headings/Heading";
 import {useDispatch, useSelector} from "react-redux";
-import {useForm} from "react-hook-form";
-import createNumberMask from "text-mask-addons/src/createNumberMask";
-import MaskedInput from "react-text-mask";
+import {Controller, useForm} from "react-hook-form";
 import {addTransaction, getCurrency} from "../../store/transactions";
+import CurrencyInput from "../inputs/CurrencyInput";
 
 const AddTransactionForm = styled.form`
       display: flex;
@@ -71,31 +70,25 @@ const AddTransactionContainer = () => {
 
     const dispatch = useDispatch();
     const currency = useSelector(getCurrency);
-    const {handleSubmit, register, errors} = useForm();
+    const {handleSubmit, register, errors, control} = useForm();
 
 
-    const onSubmit = values => {
-        console.log(values);
+    const onSubmit = ({title, amount}) => {
+
+        // --- PARSE AMOUNT TO NUMBER WITH *.00 PRECISION ---
+        amount = Number(parseFloat(amount).toFixed(2));
+
+        // --- DISPATCH REDUX ACTION TO ADD TRANSACTION TO THE LIST ---
         dispatch(addTransaction({
-            title: values.title,
-            amount: values.amount || 999999,
+            title,
+            amount,
             currency
         }));
     };
 
-    const defaultMaskOptions = {
-        prefix: '',
-        suffix: '',
-        includeThousandsSeparator: false,
-        allowDecimal: true,
-        decimalSymbol: '.',
-        decimalLimit: 2,
-        allowNegative: false,
-        allowLeadingZeroes: false,
-    };
-
-    const currencyMask = createNumberMask(defaultMaskOptions);
-
+    useEffect(() => {
+        register({name: "amount"}, {required: "Kwota jest wymagana."});
+    }, [register]);
 
     return (
         <AddTransactionForm onSubmit={handleSubmit(onSubmit)}>
@@ -113,18 +106,12 @@ const AddTransactionContainer = () => {
             <InputWrapper width="20%">
                 <Heading color="white">Kwota</Heading>
                 <CurrencyWrapper>
-                    <MaskedInput
-                        id="my-input-id"
-                        type="text"
+                    <Controller
+                        as={CurrencyInput}
                         name="amount"
-                        placeholder="Kwota"
-                        haserror={hasInputError(errors.amount)}
-                        mask={currencyMask}
-                        defaultValue={0}
-                        ref={register({required: "xx"})}
-                        render={(ref, props) => (
-                            <Input ref={(input) => ref(input)} {...props}/>
-                        )}
+                        control={control}
+                        placeholder="0.00"
+                        errored={`${hasInputError(errors.amount)}`}
                     />
                 </CurrencyWrapper>
                 <InputValidationError value={errors.amount}/>
