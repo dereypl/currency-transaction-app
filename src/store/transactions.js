@@ -26,47 +26,47 @@ const transactionsSlice = createSlice({
 });
 
 // --- HELPERS ---
-const getConvertedCurrencyAmount = (amount, rate) => (amount * rate).toFixed(2);
+const getConvertedAmount = (amount, rate) => (amount * rate).toFixed(2);
 
-const getTransactionAfterCurrencyConversion = (transaction, rate) => ({
+const getConvertedTransaction = (transaction, rate) => ({
     ...transaction,
-    convertedAmount: getConvertedCurrencyAmount(transaction.amount, rate)
+    convertedAmount: getConvertedAmount(transaction.amount, rate)
 });
 
 // --- BASIC SELECTORS ---
-export const getPureTransactionsList = state => state.transactions.list;
+export const getTransactionsList = state => state.transactions.list;
 export const getCurrency = state => state.currency;
 
 // --- MEMOIZED SELECTORS ---
-export const getTransactionsList = createSelector(
-    [getPureTransactionsList, getCurrency],
-    (list, currency) => list.map(transaction => getTransactionAfterCurrencyConversion(transaction, currency.rate))
+export const getConvertedTransactionsList = createSelector(
+    [getTransactionsList, getCurrency],
+    (list, currency) => list.map(transaction => getConvertedTransaction(transaction, currency.rate))
 );
 
 export const getHighestAmountTransaction = createSelector(
-    [getPureTransactionsList, getCurrency],
-    (list, currency) => {
+    [getTransactionsList, getCurrency],
+    (transactionsList, currency) => {
 
         // --- SET FIRST TRANSACTION TO THE HIGHEST ---
-        let highestAmountTransaction = list[0];
+        let highestAmountTransaction = transactionsList[0];
 
         // --- CHECK THE LIST AND SET HIGHER IF FOUND ---
-        list.forEach(transaction => {
+        transactionsList.forEach(transaction => {
                 if (transaction.amount > highestAmountTransaction.amount)
                     highestAmountTransaction = transaction;
             }
         );
 
         // --- RETURN THE HIGHEST TRANSACTION AFTER CURRENCY CONVERSION ---
-        return getTransactionAfterCurrencyConversion(highestAmountTransaction, currency.rate)
+        return getConvertedTransaction(highestAmountTransaction, currency.rate)
     }
 );
 
 export const getTransactionsTotalAmount = createSelector(
-    [getPureTransactionsList, getCurrency],
-    (list, currency) =>{
-        let total = list.reduce((prevT, currentT) => prevT + (currentT.amount || 0), 0);
-        return getConvertedCurrencyAmount(total, currency.rate);
+    [getTransactionsList, getCurrency],
+    (transactionsList, currency) =>{
+        let total = transactionsList.reduce((prevT, currentT) => prevT + (currentT.amount || 0), 0);
+        return getConvertedAmount(total, currency.rate);
     }
 );
 

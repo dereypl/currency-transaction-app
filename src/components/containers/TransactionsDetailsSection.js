@@ -4,7 +4,7 @@ import styled from "styled-components";
 import TransactionListItem from "./TransactionListItem";
 import HighestAmountTransactionContainer from "./HighestAmountTransactionContainer";
 import CountUp from "react-countup";
-import {getTransactionsList, getTransactionsTotalAmount} from "../../store/transactions";
+import {getConvertedTransactionsList, getTransactionsTotalAmount} from "../../store/transactions";
 import {useSelector} from "react-redux";
 
 const Wrapper = styled.section`
@@ -48,7 +48,7 @@ const Total = styled.div`
 
 const TransactionSection = () => {
 
-    const transactions = useSelector(getTransactionsList);
+    const transactions = useSelector(getConvertedTransactionsList);
     const totalCount = useSelector(getTransactionsTotalAmount);
     console.log(totalCount);
 
