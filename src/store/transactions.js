@@ -26,7 +26,7 @@ const transactionsSlice = createSlice({
 });
 
 // --- HELPERS ---
-export const getFixedAmount = (amount, precision = 2) => parseFloat(amount).toFixed(precision);
+export const getFixedAmount = (amount, precision = 2) => Number(parseFloat(amount).toFixed(precision));
 const getConvertedAmount = (amount, rate) => getFixedAmount(amount * rate);
 
 const getConvertedTransaction = (transaction, rate) => ({
@@ -42,7 +42,7 @@ export const getCurrency = state => state.currency;
 export const getConvertedTransactionsList = createSelector(
     [getTransactionsList, getCurrency],
     (list, currency) =>
-        Boolean(list.length) ? list.map(transaction => getConvertedTransaction(transaction, currency.rate)) : []
+        list.length ? list.map(transaction => getConvertedTransaction(transaction, currency.rate)) : []
 );
 
 export const getHighestAmountTransaction = createSelector(
@@ -50,7 +50,7 @@ export const getHighestAmountTransaction = createSelector(
     (transactionsList, currency) => {
 
         // --- ONLY IF THERE IS ANY TRANSACTION ---
-        if (Boolean(transactionsList.length)) {
+        if (transactionsList.length) {
 
             // --- SET FIRST TRANSACTION TO THE HIGHEST ---
             let highestAmountTransaction = transactionsList[0];
