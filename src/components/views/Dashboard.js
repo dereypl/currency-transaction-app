@@ -4,6 +4,7 @@ import ExchangeRateContainer from "../containers/ExchangeRateContainer";
 import AddTransactionContainer from "../containers/AddTransactionContainer";
 import TransactionsDetailsSection from "../containers/TransactionsDetailsSection";
 import device from "../../utils/ui-config/mobileQueries";
+import {Heading} from "../headings/Heading";
 
 const Wrapper = styled.div`
       display: flex;
@@ -35,6 +36,7 @@ const Dashboard = () => {
                 [LOGOTYPE]
                 <ExchangeRateContainer/>
             </Header>
+            <Heading>Dodaj transakcję</Heading>
             <AddTransactionContainer/>
             <TransactionsDetailsSection/>
         </Wrapper>
