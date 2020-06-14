@@ -60,10 +60,14 @@ const TransactionsTotalAmount = styled.div`
 
 const Total = styled.div`
       display: flex;
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: ${({theme}) => theme.fontWeight.bold};
       padding-left: 2rem;
       color: ${({theme}) => theme.colors.dark_blue};
+      
+      @media ${device.mobileXL} { 
+          font-size: 4rem;
+      }
 `;
 
 const TransactionSection = () => {
