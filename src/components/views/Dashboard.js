@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import ExchangeRateContainer from "../containers/ExchangeRateContainer";
 import AddTransactionContainer from "../containers/AddTransactionContainer";
 import TransactionsDetailsSection from "../containers/TransactionsDetailsSection";
+import device from "../../utils/ui-config/mobileQueries";
 
 const Wrapper = styled.div`
       display: flex;
       flex-direction: column;
-      width: 70vw;
+      width: 85vw;
       height: 100vh;
       margin: 0 auto;
+      
+      @media ${device.laptop} { 
+          width: 70vw;
+      }       
 `;
 
 const Header = styled.section`

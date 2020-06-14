@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import device from "../../utils/ui-config/mobileQueries";
 
 const Button = styled.button`
       display: flex;
       padding: 0;
       margin-top: ${({marginTop}) => marginTop || '0'};
       background-color: ${({theme}) => theme.colors.dark_blue};
-      width: ${({width}) => width || '100%'};
+      width: 100%;
       height: 4rem;
       border: none;
       border-radius: 1rem;
@@ -39,6 +40,10 @@ const Button = styled.button`
       }
        &:focus{
            outline: none;
+       }
+       
+       @media ${device.laptop} { 
+          width: ${({width}) => width || '100%'};
        }
 `;
 

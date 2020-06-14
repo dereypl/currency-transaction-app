@@ -7,23 +7,37 @@ import {useDispatch, useSelector} from "react-redux";
 import {Controller, useForm} from "react-hook-form";
 import {addTransaction, getCurrency} from "../../store/transactions";
 import CurrencyInput from "../inputs/CurrencyInput";
+import device from "../../utils/ui-config/mobileQueries";
 
 const AddTransactionForm = styled.form`
       display: flex;
+      flex-direction: column;
       width: 100%;
-      height: 18rem;
+      height: 35rem;
       background-color: ${({theme}) => theme.colors.dark_blue};
       position:relative;
-      padding: 5rem;
+      padding: 3rem 2rem;
       border-radius: 2rem;
+      
+      @media ${device.laptop} { 
+         flex-direction: row;
+         height: 18rem;
+         padding: 5rem;
+      }
 `;
 
 const InputWrapper = styled.div`
       display: flex;
       flex-direction: column;
-      width: ${({width}) => width || '100%'};
-      margin-right: 2rem;
-      height: 7rem;
+      width: 100%;
+      margin-right: 0;
+      height: 8rem;
+      
+      @media ${device.laptop} { 
+         width: ${({width}) => width || '100%'};
+         margin-right: 2rem;
+         height: 7rem;
+      }
 `;
 
 
