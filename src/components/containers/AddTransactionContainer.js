@@ -70,7 +70,7 @@ const AddTransactionContainer = () => {
 
     const dispatch = useDispatch();
     const currency = useSelector(getCurrency);
-    const {handleSubmit, register, errors, control} = useForm();
+    const {handleSubmit, register, errors, control, reset} = useForm();
 
 
     const onSubmit = ({title, amount}) => {
@@ -84,6 +84,8 @@ const AddTransactionContainer = () => {
             amount,
             currency
         }));
+
+        reset({title: "", amount: null})
     };
 
     useEffect(() => {
