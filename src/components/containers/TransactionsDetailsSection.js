@@ -6,35 +6,55 @@ import HighestAmountTransactionContainer from "./HighestAmountTransactionContain
 import CountUp from "react-countup";
 import {getConvertedTransactionsList, getTransactionsTotalAmount} from "../../store/transactions";
 import {useSelector} from "react-redux";
+import device from "../../utils/ui-config/mobileQueries";
 
 const Wrapper = styled.section`
       display: flex;
+      flex-direction: column;
       width: 100%;
       height: auto;
       margin-top: 6rem;
       padding-bottom: 4rem;
+      
+      @media ${device.laptopL} { 
+         flex-direction: row;
+      }
 `;
 
 const TransactionsList = styled.div`
       display: flex;
       flex-direction: column;
-      width: 70%;
+      width: 100%;
       height: auto;
       min-height: 30rem;
-      padding-right: 3rem;
+      order: 2;
+      
+      @media ${device.laptopL} { 
+         order: 1;
+         width: 70%;
+         padding-right: 3rem;
+      }
 `;
 
 const TransactionsInsights = styled.div`
       display: flex;
       flex-direction: column;
-      width: 30%;
+      width: 100%;
       height: auto;
       min-height: 30rem;
+      order: 1;
+      justify-content: space-between;
+
+      @media ${device.laptopL} { 
+         order: 2;
+         width: 30%;
+      }
 `;
 
 const TransactionsTotalAmount = styled.div`
       display: flex;
       flex-direction: column;
+      margin-bottom: 4rem;
       margin-top: 4rem;
 `;
 
@@ -59,11 +79,11 @@ const TransactionSection = () => {
                 {transactions.map(transaction => <TransactionListItem key={transaction.id} transaction={transaction}/>)}
             </TransactionsList>
             <TransactionsInsights>
-                <HighestAmountTransactionContainer/>
-                <TransactionsTotalAmount>
-                    <Heading>Suma wszystkich transakcji</Heading>
-                    <Total><CountUp end={parseFloat(totalCount)} decimal="," decimals={2}/> PLN</Total>
-                </TransactionsTotalAmount>
+                    <HighestAmountTransactionContainer/>
+                    <TransactionsTotalAmount>
+                        <Heading>Suma wszystkich transakcji</Heading>
+                        <Total><CountUp end={parseFloat(totalCount)} decimal="," decimals={2}/> PLN</Total>
+                    </TransactionsTotalAmount>
             </TransactionsInsights>
         </Wrapper>
     );

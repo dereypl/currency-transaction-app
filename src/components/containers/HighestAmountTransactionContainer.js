@@ -36,11 +36,12 @@ const DetailsHeading = styled(Heading)`
 
 const RowWrapper = styled.div`
       display:flex;
+      width: 100%;
+      justify-content: space-between;
 `;
 const ColumnWrapper = styled.div`
       display:flex;
       flex-direction: column;
-      margin-right: 3rem;
 `;
 
 const HighestAmountTransactionContainer = () => {

@@ -16,7 +16,7 @@ const AddTransactionForm = styled.form`
       height: 35rem;
       background-color: ${({theme}) => theme.colors.dark_blue};
       position:relative;
-      padding: 3rem 2rem;
+      padding: 3rem;
       border-radius: 2rem;
       
       @media ${device.laptop} { 
