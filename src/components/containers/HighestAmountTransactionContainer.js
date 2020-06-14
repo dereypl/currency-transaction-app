@@ -78,14 +78,23 @@ const HighestAmountTransactionContainer = () => {
                         <Heading color="#B2B2B2">Kwota</Heading>
                         <DetailsHeading currency>
                             {currency_from}
-                            <CountUp end={amount} decimal="," decimals={2}/>
+                            <CountUp
+                                duration={1.5}
+                                end={parseFloat(amount)}
+                                decimal=","
+                                decimals={2}/>
                         </DetailsHeading>
                     </ColumnWrapper>
                     <ColumnWrapper>
                         <Heading color="#B2B2B2">Po przewalutowaniu</Heading>
                         <DetailsHeading currency>
                             {currency_to}
-                            <CountUp end={parseFloat(convertedAmount)} decimal="," decimals={2}/>
+                            <CountUp
+                                duration={1.5}
+                                end={parseFloat(convertedAmount)}
+                                decimal=","
+                                decimals={2}
+                            />
                         </DetailsHeading>
                     </ColumnWrapper>
                 </RowWrapper>

@@ -87,7 +87,12 @@ const TransactionSection = () => {
                     <HighestAmountTransactionContainer/>
                     <TransactionsTotalAmount>
                         <Heading>Suma wszystkich transakcji</Heading>
-                        <Total><CountUp end={parseFloat(totalCount)} decimal="," decimals={2}/> PLN</Total>
+                        <Total><CountUp
+                            duration={1.5}
+                            end={parseFloat(totalCount)}
+                            decimal=","
+                            decimals={2}
+                        /> PLN</Total>
                     </TransactionsTotalAmount>
             </TransactionsInsights>
         </Wrapper>
