@@ -42,7 +42,7 @@ export const getCurrency = state => state.currency;
 export const getConvertedTransactionsList = createSelector(
     [getTransactionsList, getCurrency],
     (list, currency) =>
-        list.length ? list.map(transaction => getConvertedTransaction(transaction, currency.rate)) : []
+        list ? list.map(transaction => getConvertedTransaction(transaction, currency.rate)) : []
 );
 
 export const getHighestAmountTransaction = createSelector(
