@@ -103,7 +103,10 @@ const AddTransactionContainer = () => {
     };
 
     useEffect(() => {
-        register({name: "amount"}, {required: "Kwota jest wymagana."});
+        register({name: "amount"}, {
+            required: "Kwota jest wymagana.",
+            validate: value => value > 0 || "Kwota musi być większa od 0."
+        });
     }, [register]);
 
     return (
