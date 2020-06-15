@@ -1,7 +1,7 @@
 ## Currency Transactions App
 Project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-####Application is deployed at Heroku:
+#### Application is deployed at Heroku:
 View live demo: [Currency Transactions App](https://transactions-currency-app.herokuapp.com/) 
 
 #### Technologies and libraries used in project:
@@ -22,13 +22,17 @@ View live demo: [Currency Transactions App](https://transactions-currency-app.he
 
 In the project directory, you can run:
 
-## `npm start`
+```javascript
+npm start
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-## `npm test`
+```javascript
+npm test
+```
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
