@@ -29,7 +29,6 @@ const DetailsHeading = styled(Heading)`
       font-size: ${({theme}) => theme.fontSize.xl};
       font-weight: ${({theme}) => theme.fontWeight.semiBold};
       color: white;
-      height: 5rem;
       margin-top: -0.5rem;
   
       ${({currency}) => currency && css`
@@ -47,6 +46,7 @@ const RowWrapper = styled.div`
       flex-direction: column;
       width: 100%;
       justify-content: space-between;
+      margin-top: 1rem;
       
       @media ${device.mobileXL} { 
          flex-direction: row;
@@ -54,6 +54,7 @@ const RowWrapper = styled.div`
       
       @media ${device.laptopL} { 
          flex-direction: column;
+         margin-top: 0;
       }
 `;
 const ColumnWrapper = styled.div`
