@@ -9,7 +9,7 @@ import HighestAmountTransactionContainer from "../containers/HighestAmountTransa
 import CountUp from "react-countup";
 import {getConvertedTransactionsList, getFixedAmount, getTransactionsTotalAmount} from "../../store/transactions";
 import {useSelector} from "react-redux";
-import {AppLogo} from "../containers/AppLogo";
+import {AppLogo} from "../assets/AppLogo";
 
 const Wrapper = styled.div`
       display: flex;
