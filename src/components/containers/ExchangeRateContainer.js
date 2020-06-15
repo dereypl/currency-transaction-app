@@ -52,6 +52,10 @@ const Container = styled.div`
           height: 5rem;
           width: 40rem;
           padding: 2rem;
+          
+          ${({rollDown}) => rollDown === true && css`
+              height: 12rem;
+          `}
       };
 `;
 
@@ -90,7 +94,6 @@ const StyledCurrencyWrapper = styled(CurrencyWrapper)`
            right: 0.8rem;
            top: 1.3rem;
       }
-      
       
        @media ${device.mobileXL} { 
           width: 60%;
