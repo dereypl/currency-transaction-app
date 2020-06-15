@@ -1,6 +1,13 @@
 {
   "items": [
     {
+      "id": 1006,
+      "currency_from": "EUR",
+      "currency_to": "PLN",
+      "title": "Transakcja walutowa 6",
+      "amount": 10.44
+    },
+    {
       "id": 1005,
       "currency_from": "EUR",
       "currency_to": "PLN",
