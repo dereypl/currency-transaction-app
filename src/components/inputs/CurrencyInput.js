@@ -28,21 +28,21 @@ const StyledInput = styled(MaskedInput)`
      `}
 `;
 
-const defaultMaskOptions = {
+const defaultMaskOptions = (decimalLimit = 2) => ({
     prefix: '',
     suffix: '',
     includeThousandsSeparator: false,
     allowDecimal: true,
     decimalSymbol: '.',
-    decimalLimit: 2,
+    decimalLimit: decimalLimit,
     integerLimit: 10,
     allowNegative: false,
     allowLeadingZeroes: false,
-};
+});
 
 
 const CurrencyInput = inputProps => {
-    const currencyMask = createNumberMask(defaultMaskOptions);
+    const currencyMask = createNumberMask(defaultMaskOptions(inputProps.precision));
     return <StyledInput  mask={currencyMask} {...inputProps} />
 };
 

@@ -57,7 +57,7 @@ export const CurrencyWrapper = styled.div`
       }
 `;
 
-const ErrorWrapper = styled.div`
+export const ErrorWrapper = styled.div`
       display: flex;
       width: 100%;
       font-size: ${({theme}) => theme.fontSize.s};
@@ -73,7 +73,7 @@ const hasInputError = inputError => inputError && inputError.value === undefined
 const hasFormErrors = errors => !(errors.title === undefined && errors.amount === undefined);
 
 // --- INPUT ERROR MESSAGES ---
-const InputValidationError = inputError => (
+export const InputValidationError = inputError => (
     <ErrorWrapper>
         {hasInputError(inputError) ? null : inputError.value.message}
     </ErrorWrapper>

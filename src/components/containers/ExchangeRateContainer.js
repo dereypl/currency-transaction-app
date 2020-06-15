@@ -1,16 +1,17 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import styled, {css} from "styled-components";
 import {ArrowDownIcon} from "../icons/ArrowDownIcon";
 import {ArrowUpIcon} from "../icons/ArrowUpIcon";
-import Input from "../inputs/Input";
 import Button from "../buttons/Button";
 import {CurrencyWrapper} from "./AddTransactionContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrencyRate} from "../../store/currency";
 import {getCurrency, getFixedAmount} from "../../store/transactions";
 import device from "../../utils/ui-config/mobileQueries";
+import {Controller, useForm} from "react-hook-form";
+import CurrencyInput from "../inputs/CurrencyInput";
 
-const Container = styled.div`
+const Container = styled.form`
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -103,47 +104,69 @@ const StyledCurrencyWrapper = styled(CurrencyWrapper)`
        };
 `;
 
+const hasInputError = inputError => inputError && inputError.value === undefined;
+
 const ExchangeRateContainer = () => {
 
-    const refInput = useRef();
     const dispatch = useDispatch();
     const [rollDown, setRollDown] = useState(false);
     const currency = useSelector(getCurrency);
+    const {handleSubmit, register, errors, control} = useForm();
 
     const toggleRollDown = () => setRollDown(!rollDown);
 
-    const handleSave = () => {
-        const value = getFixedAmount(refInput.current.value, 4);
-        dispatch(setCurrencyRate(value));
+    useEffect(() => {
+        register({name: "rate"},
+            {
+                required: "Przelicznik jest wymagany.",
+                validate: value => value > 0 || "Przelicznik musi być większy od 0."
+            });
+    }, [rollDown, register]);
+
+
+    const onSubmit = ({rate}) => {
+        const currencyRate = getFixedAmount(rate, 4);
+        dispatch(setCurrencyRate(currencyRate));
         setRollDown(false);
     };
 
+
     return (
-        <Container rollDown={rollDown}>
-            {rollDown ?
-                <>
-                    <span>1 {currency.from} =</span>
-                    <RateWrapper>
-                        <StyledCurrencyWrapper>
-                            <Input type="number" ref={refInput} defaultValue={currency.rate}/>
-                        </StyledCurrencyWrapper>
-                        <Button width="9rem" onClick={handleSave}>Zapisz</Button>
-                    </RateWrapper>
-                    <IconWrapper onClick={toggleRollDown}>
-                        <ArrowUpIcon/>
-                    </IconWrapper>
-                </>
-                :
-                <>
-                    <RateWrapper>
-                        Przelicznik <span>1 {currency.from} = {currency.rate} {currency.to}</span>
-                    </RateWrapper>
-                    <IconWrapper onClick={toggleRollDown}>
-                        <ArrowDownIcon/>
-                    </IconWrapper>
-                </>
-            }
-        </Container>
+        <>
+            <Container rollDown={rollDown} onSubmit={handleSubmit(onSubmit)}>
+                {rollDown ?
+                    <>
+                        <span>1 {currency.from} =</span>
+                        <RateWrapper>
+                            <StyledCurrencyWrapper>
+                                <Controller
+                                    as={CurrencyInput}
+                                    control={control}
+                                    precision={4}
+                                    name="rate"
+                                    placeholder="0.0000"
+                                    defaultValue={currency.rate}
+                                    errored={`${hasInputError(errors.rate)}`}
+                                />
+                            </StyledCurrencyWrapper>
+                            <Button disabled={hasInputError(errors.rate)} width="9rem">Zapisz</Button>
+                        </RateWrapper>
+                        <IconWrapper onClick={toggleRollDown}>
+                            <ArrowUpIcon/>
+                        </IconWrapper>
+                    </>
+                    :
+                    <>
+                        <RateWrapper>
+                            Przelicznik <span>1 {currency.from} = {currency.rate} {currency.to}</span>
+                        </RateWrapper>
+                        <IconWrapper onClick={toggleRollDown}>
+                            <ArrowDownIcon/>
+                        </IconWrapper>
+                    </>
+                }
+            </Container>
+        </>
     );
 };
 
